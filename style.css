@@ -154,10 +154,15 @@ footer
     flex-direction: column;
 }
 /*Listado*/
-.listado table
-{
+table {
+    background-color: rgb(247, 229, 229);
     width: 100%;
-    background-color: aquamarine;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    border: 1px solid #ddd;
 }
 /*Fin listado*/
 
@@ -179,6 +184,15 @@ footer
         flex-direction: column;
         width: 60%;
     }
+
+    /*Listado*/
+    .listado
+    {
+        width: 100%;
+        overflow: scroll;
+    }
+
+    /*Fin listado*/
 
 
 }

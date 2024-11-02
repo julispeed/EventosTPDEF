@@ -15,6 +15,34 @@ let numeroeventos=
 
 //FUNCIONES
 
+const tabla = document.getElementById("informacion");
+
+function ListarTabla(evento) {
+    evento.forEach(element => {
+        
+        const fila = document.createElement("tr");
+
+        const nombre = document.createElement("td");
+        const fecha = document.createElement("td");
+        const ciudad = document.createElement("td");
+        const editar = document.createElement("td");
+        const eliminar = document.createElement("td");
+
+        nombre.textContent = element.nombre;
+        fecha.textContent = element.fecha;
+        ciudad.textContent = element.ciudad;
+        editar.textContent = "editar";
+        eliminar.textContent = "eliminar";
+
+        fila.appendChild(nombre);
+        fila.appendChild(fecha);
+        fila.appendChild(ciudad);
+        fila.appendChild(editar);
+        fila.appendChild(eliminar);
+
+        tabla.appendChild(fila);
+    });
+}
 
 
 //LISTENER Y ELEMENTOS
@@ -105,6 +133,9 @@ document.getElementById('boton-enviar').addEventListener('click',function(event)
         );
 
         document.getElementById('datoseventos').reset();
+        //limpiamos la tabla
+        tabla.innerHTML="";
+        ListarTabla(eventos);
 
     });
 //fin ENVIAR
@@ -228,7 +259,10 @@ document.getElementById('boton-enviar').addEventListener('click',function(event)
                 let filtros= document.querySelectorAll(".filtros");
                 filtros.forEach(filtros => {
                     filtros.style.display="none" ;
-                });    
+                });   
+                //Limiamos la tabla
+                tabla.innerHTML=""; 
+                ListarTabla(coincidencias);
                 console.log("fin");
             });
 
@@ -255,6 +289,8 @@ document.getElementById('boton-enviar').addEventListener('click',function(event)
                     filtros.forEach(filtros => {
                         filtros.style.display="none" ;
                     });    
+                    tabla.innerHTML=""; 
+                    ListarTabla(coincidencias);
                     console.log("fin");
                 });
                 //FIN FINALIZA CON
@@ -271,6 +307,8 @@ document.getElementById('boton-enviar').addEventListener('click',function(event)
                         filtros.forEach(filtros => {
                             filtros.style.display="none" ;
                         });    
+                        tabla.innerHTML=""; 
+                        ListarTabla(coincidencias);
                         console.log("fin");
                     });
                 // FIN BOTON CONTIENE
