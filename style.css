@@ -1,0 +1,184 @@
+body
+{
+    background-color: brown;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+button
+{
+    background-color: rgb(255, 191, 191);
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.5s;
+    border: none;
+}
+button:hover
+{
+    background-color: rgb(255, 255, 255);;
+}
+main
+{
+    display: flex;
+    flex-direction: column;    
+}
+/* principio de pagina */
+nav
+{
+    display:flex; 
+    width: 100%;
+    height: 10%; 
+    border-bottom: rgb(255, 255, 255)    solid   10px;
+} 
+.logo
+{
+    height: 100%;
+    width: 50%;
+}
+.titulo:hover
+{
+    color: darkcyan;
+}
+.titulo
+{
+    color: aliceblue;
+    text-align: center;
+    margin-top: 10%;   
+    margin: 10%; 
+}
+/* fin principio de pagina */
+/* filtro (relacionado con la registracion y muestra de informacion) */
+h2, h1, p, a, label
+{
+    color: white;   
+}
+
+.filtro
+{
+    background-color: rgb(141, 47, 47);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    padding-top: 5px;    
+}
+button
+{
+    margin: 5%;
+}
+.botones
+{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+}
+/*fin filtro*/
+/* ingreso de informacion*/
+.informacion
+{
+    background-color: rgb(141, 47, 47);
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+.formulario
+{  
+    width: 50%;
+}
+.formulario h2{
+    text-align: center;
+}
+.form label
+{
+    
+    display: block;
+}
+.form
+{
+    margin: 10px;
+    text-align: center;
+    border-radius: 1%;
+    margin: 1%;
+}
+textarea
+{
+    width: 80%;
+    height: 30vh;
+}
+
+
+.radios
+{
+    display: flex;
+    justify-content: center;
+}
+.botonesdecarga
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+/*fin ingreso de informacion*/
+
+/*footer*/
+footer
+{
+    background-color: rgb(98, 22, 22);
+    margin: 0%;
+    width: 100%;
+    text-align: center;
+    position: relative;    
+}
+
+.division
+{
+    border-bottom: 10px solid white;
+
+}
+
+
+/*Filtros de contiene*/
+.filtros
+{
+    display: none;
+
+}
+.filtro-eventos
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/*Listado*/
+.listado table
+{
+    width: 100%;
+    background-color: aquamarine;
+}
+/*Fin listado*/
+
+@media (max-width: 550px) 
+{
+    nav
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav .logo
+    {
+        width: 100%;
+    }
+    .botones
+    {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+
+
+}

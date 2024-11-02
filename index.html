@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even-tos</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="icon" href="/Imagenes/Logopagina.png">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <img class="logo" src="/Imagenes/LogoEmpresa.png">
+            <h1 class="titulo">Organiza Even-tos para que nadie se olvide de que organizaste un evento</h1>
+        </nav>
+    </header>
+    <main>       
+        <section class="contenedor">
+            <div class="filtro">                
+                <h2>Busca tus eventos</h2>
+                <div class="botones">
+                    <button id="mostrar" >Listar Eventos</button>
+                    <button id="buscar">Buscar Eventos</button>
+                    <button id="ordenar">Ordernar alfabeticamente los Eventos</button>    
+                </div>
+
+                <div class="filtro-eventos">
+                    <button id="filtrar">Filtrar eventos</button>
+                    <div class="filtros">                        
+                        <button id="comienza">Comienza con</button>
+                        <button id="finaliza">Finaliza con</button>
+                        <button id="contiene">Contiene</button>                                            
+                    </div>
+                    <div class="filtros"> 
+                        <input type="text" id="busqueda">
+                    </div>   
+
+                </div>
+                <div id="rta">
+
+                </div>
+            </div>
+
+            <div class="informacion">
+                <div class="formulario">
+                    <h2>REGISTRAR EVENTO</h2>
+                    <form id="datoseventos">
+                        <div class="form">
+                            <label for="evento-nombre">Nombre del evento</label>
+                            <input type="text" id="evento-nombre" name="evento-nombre" required>
+                        </div>
+                        <div class="form">
+                            <label>Tipo de Evento</label>
+                            <div class="radios">
+                                <input type="radio" name="evento-tipo" id="concierto" value="Concierto">
+                                <label>Concierto</label>
+                                <input type="radio" name="evento-tipo" id="Exposición" value="Exposición">
+                                <label>Exposición</label>
+                                <input type="radio" name="evento-tipo" id="feria" value="Feria">
+                                <label>Feria</label>
+                            </div>
+                        </div>
+                        <div class="form">
+                            <label>Fecha de Evento</label>
+                            <input type="date" id="evento-fecha" name="fecha-evento" required>
+                        </div>
+                        <div class="form">
+                            <label for="evento-direccion">Direccion</label>         
+                            <input type="text" name="evento-direccion" id="evento-direccion" required> 
+                        </div>
+                        <div class="form">
+                            <label>Ciudad</label>
+                            <select id="evento-ciudad" name="evento-ciudad" class="ciudad" required>
+                                <option value="Bahia Blanca">Bahia Blanca</option>
+                                <option value="General San Martin">General San Martin</option>
+                                <option value="Jacinto Arauz">Jacinto Arauz</option>
+                                <option value="Bernasconi">Bernasconi</option>
+                            </select>
+                        </div>                
+                        <div class="form">
+                            <label for="evento-capacidad">Capacidad</label>
+                            <input type="number" name="evento-capacidad" id="evento-capacidad" value="0" required>
+                        </div>
+                        <div class="form">
+                            <label for="evento-cobro">Evento Gratuito</label>
+                            <input type="checkbox" name="evento-cobro" id="evento-cobro">
+                        </div>
+                        <div class="form">
+                            <label for="evento-cotizacion">Costo Evento</label>
+                            <input type="number" name="evento-cotizacion" id="evento-cotizacion" value="0" required>
+                        </div>
+                        <div class="form">
+                            <label for="evento-puntuacion">Valoriacion del evento:<span id="puntuacion">0</span></label>        
+                            <input type="range" id="evento-puntuacion" name="evento-puntuacion" min="0" max="5" value="0" required>
+                        </div>
+                        <div class="form">
+                            <label for="evento-observacion">Observaciones</label>
+                            <textarea id="evento-observacion" name="evento-observacion"></textarea>
+                        </div>
+                        <div class="botonesdecarga">
+                                <button type="submit" id="boton-enviar" class="botons" >Cargar Evento</button>
+                                <button type="reset" id="boton-reset" class="botonr" >Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>   
+    </main>
+
+
+
+    <div class="division"></div>
+
+    <section class="listado">
+        <table> 
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo de Evento</th>
+                    <th>Fecha</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Gratuito</th>
+                    <th>Costo</th>
+                    <th>Valoracion</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </section>
+
+
+
+    <footer>
+        <p>&copy; 2024 Even-tos. Todos los derechos reservados.</p>
+        <p>
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> | 
+            <a href="https://www.twitter.com" target="_blank">Twitter</a> | 
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+
+
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
