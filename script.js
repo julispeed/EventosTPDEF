@@ -84,7 +84,7 @@ function Insertar(event)
         alert("Cotizacion inválida");
         return;
     }
-    else if (eventos.some(evento=> evento.nombre === EventoNombre))
+    else if (eventos.some(evento=> evento.nombre.toLowerCase() === EventoNombre.toLowerCase()))
     {
             alert("Nombre ya existe");
             return;
