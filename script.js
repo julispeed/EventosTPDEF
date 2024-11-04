@@ -31,6 +31,11 @@ function Eliminar(nombre)
             if(confirm(`Desea eliminar el evento ${nombre}?`))
             {
                 eventos=eventos.filter(e=>e.nombre!=nombre);
+                actualizar.disabled=true;
+                document.getElementById('boton-enviar').disabled=false;
+                document.getElementById('datoseventos').reset();
+                document.getElementById('boton-cancelar').style.display="none";
+
             }            
         }
     tabla.innerHTML=""
@@ -149,7 +154,7 @@ function ListarTabla(arregloEventos) {
                     <td>${ElementEvento.fecha}</td>
                     <td>${ElementEvento.ciudad}</td>
                     <td><img src="/Imagenes/Editar.png" alt="Editar" onclick="EditarEvento('${ElementEvento.nombre}')"></td>
-                    <td><img src="/Imagenes/Eliminar.png" alt="Eliminar" onclick="Eliminar('${ElementEvento.nombre}')"></td>
+                    <td><img src="/Imagenes/Eliminar.png" alt="Eliminar" onclick="Eliminar('${ElementEvento.nombre}')" id="delete" "></td>
                 `;        
                 tabla.appendChild(fila);
             });
@@ -163,9 +168,7 @@ function ListarTabla(arregloEventos) {
 
 
 function EditarEvento(nombre)
-{
-    
-    
+{    
     let objeto=eventos.find(e =>e.nombre===nombre);
     if (objeto!=null)
     {
@@ -181,7 +184,9 @@ function EditarEvento(nombre)
         document.getElementById('evento-observacion').value=objeto.observacion;   
         actualizar.disabled=false;
         document.getElementById('boton-enviar').disabled=true;
-        eventos=eventos.filter(e=>e.nombre!=nombre);  
+        eventos=eventos.filter(e=>e.nombre!=nombre);        
+        document.getElementById('boton-cancelar').style.display='block';
+        document.getElementById('delete').disabled=true;
     }
     else
     {
@@ -199,6 +204,16 @@ function EditarEvento(nombre)
 
 /*-------------------------------------------------------LISTENER Y ELEMENTOS-----------------------------------------------------------------*/
 
+document.getElementById('boton-cancelar').addEventListener('click',function(event)
+{
+    event.preventDefault();
+    actualizar.disabled=true;
+    document.getElementById('boton-enviar').disabled=false;
+    document.getElementById('boton-cancelar').style.display='none'
+    document.getElementById('datoseventos').reset();
+    
+
+})
 
 actualizar.addEventListener('click',function(event)//Listener de ACTUALIZAR
 {  
@@ -206,7 +221,8 @@ actualizar.addEventListener('click',function(event)//Listener de ACTUALIZAR
     Insertar(event);// importante el parametro EVENT para el listener como para insertar, evitara que se reinicie la pagina y perdamos los datos
     actualizar.disabled=true;
     document.getElementById('boton-enviar').disabled = false;    
-    document.getElementById('datoseventos').reset();
+    document.getElementById('boton-cancelar').querySelector('.boton-cancelar').style.display='none';
+    document.getElementById('datoseventos').reset();    
 })                                    
 
 //BOTON CARGAR DATO
@@ -304,7 +320,8 @@ document.getElementById('boton-enviar').addEventListener('click',Insertar);// ll
                     tabla.innerHTML="";
                      ListarTabla(eventos);
                      document.querySelector('.boton-mostrartodo').style.display="none";
-                    })
+                    });
+  
 /*-------------------------------------------------------FIN LISTENER Y ELEMENTOS-----------------------------------------------------------------*/
 
 
