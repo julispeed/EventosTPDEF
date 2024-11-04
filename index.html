@@ -55,11 +55,11 @@
                         <div class="form">
                             <label>Tipo de Evento</label>
                             <div class="radios">
-                                <input type="radio" name="evento-tipo" id="concierto" value="Concierto">
+                                <input type="radio" name="evento-tipo" id="Concierto" value="Concierto">
                                 <label>Concierto</label>
                                 <input type="radio" name="evento-tipo" id="Exposición" value="Exposición">
                                 <label>Exposición</label>
-                                <input type="radio" name="evento-tipo" id="feria" value="Feria">
+                                <input type="radio" name="evento-tipo" id="Feria" value="Feria">
                                 <label>Feria</label>
                             </div>
                         </div>
@@ -100,14 +100,21 @@
                             <label for="evento-observacion">Observaciones</label>
                             <textarea id="evento-observacion" name="evento-observacion"></textarea>
                         </div>
-                        <div class="botonesdecarga">
-                                <button type="submit" id="boton-enviar" class="botons" >Cargar Evento</button>
-                                <button type="reset" id="boton-reset" class="botonr" >Limpiar</button>
+                        <div>
+                                <div class="botonesdecarga">                                
+                                    <button type="submit" id="boton-enviar" class="botons" >Cargar Evento</button>
+                                    <button type="submit" id="boton-actualizar" class="botons" disabled >Actualizar</button>
+                                    <button type="reset" id="boton-reset" class="botonr" >Limpiar</button>                              
+                                </div>
+                                <div class="botonesdecarga">
+                                    <button id="M-todo" class="boton-mostrartodo"> Mostrar Todo </button>
+                                </div>
                         </div>
                     </form>
                 </div>
             </div>
         </section>   
+
     </main>
 
 

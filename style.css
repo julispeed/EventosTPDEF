@@ -6,6 +6,7 @@ body
     flex-direction: column;
     min-height: 100vh;
 }
+
 button
 {
     background-color: rgb(255, 191, 191);
@@ -17,6 +18,13 @@ button
 button:hover
 {
     background-color: rgb(255, 255, 255);;
+}
+
+.boton-mostrartodo
+{
+    height: 10%;
+    display: none;
+
 }
 main
 {
@@ -159,6 +167,10 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
+table img
+{
+    width: 50px;
+}
 
 th, td {
     text-align: left;
@@ -191,6 +203,10 @@ th, td {
         width: 100%;
         overflow: scroll;
     }
+    table img
+{
+    width: 50px;
+}
 
     /*Fin listado*/
 
