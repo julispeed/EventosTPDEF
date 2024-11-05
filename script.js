@@ -322,6 +322,18 @@ document.getElementById('boton-enviar').addEventListener('click',Insertar);// ll
                      document.querySelector('.boton-mostrartodo').style.display="none";
                     });
   
+document.getElementById("categoria").addEventListener('click', function(){
+        const categoria=document.getElementById("filtro-no-listado").value;
+        const EvCategoria=eventos.filter(e=>e.tipo==categoria)
+        tabla.innerHTML="";
+        document.querySelector('.boton-mostrartodo').style.display="block";              
+        ListarTabla(EvCategoria);
+
+});
+    
+
+
+
 /*-------------------------------------------------------FIN LISTENER Y ELEMENTOS-----------------------------------------------------------------*/
 
 
