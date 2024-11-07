@@ -1,4 +1,4 @@
-                                                            //VARIABLES
+/*-----------------------------------------------------------VARIABLES--------------------------------------------------------------------*/
 var eventos=[];//Arreglo Original de eventos
 
 
@@ -21,6 +21,12 @@ var numeroeventos=
 )();
 
 const tabla = document.getElementById("informacion");//Nuestra tabla en html
+
+
+
+/*----------------------------------------------------------FIN VARIABLES---------------------------------------------------------------------*/
+
+
 
 /*-----------------------------------------------------------FUNCIONES--------------------------------------------------------------------*/
 
@@ -115,6 +121,21 @@ function Insertar(event)
     {
             eventos.push(evento);
             console.log(
+            
+                `
+                Evento: ${evento.nombre}\n
+                Detelles:\n
+                Numero:${evento.numero}\n
+                Fecha:${evento.fecha}\n
+                Direccion:${evento.direccion}\n
+                Ciudad:${evento.ciudad}\n
+                Capacidad:${evento.capacidad}\n
+                Cobro:${evento.cobro}\n
+                Valorizacion:${evento.valoriacion}\n
+                Observaciones:${evento.observacion}\n
+                `
+            );
+            alert(
             
                 `
                 Evento: ${evento.nombre}\n
@@ -241,7 +262,7 @@ document.getElementById('boton-enviar').addEventListener('click',Insertar);// ll
             
             valor.addEventListener('input',function()
             {
-                variacionp.textContent=valorp.value;
+                variacionp.textContent=valor.value;
             }
             );
 //fin barra responsive
