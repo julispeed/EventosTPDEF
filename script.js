@@ -22,9 +22,11 @@ var numeroeventos=
 
 const tabla = document.getElementById("informacion");//Nuestra tabla en html
 
-
-
 /*----------------------------------------------------------FIN VARIABLES---------------------------------------------------------------------*/
+
+
+
+
 
 
 
