@@ -197,7 +197,7 @@ function EditarEvento(nombre)
     {
         document.getElementById('boton-enviar').disabled = true;    
         document.getElementById('evento-nombre').value=objeto.nombre;
-        document.querySelector(`input[id="${objeto.tipo}"]`).checked=true;
+        c
         document.getElementById('evento-fecha').value=objeto.fecha;
         document.getElementById('evento-direccion').value=objeto.direccion;
         document.getElementById('evento-ciudad').value=objeto.ciudad;
