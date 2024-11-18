@@ -17,7 +17,7 @@ button
 }
 button:hover
 {
-    background-color: rgb(255, 255, 255);;
+    background-color: rgb(247, 172, 172);;
 }
 
 .boton-mostrartodo
@@ -25,6 +25,13 @@ button:hover
     height: 10%;
     display: none;
 
+}
+.error
+{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: wheat;
 }
 main
 {

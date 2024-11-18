@@ -1,10 +1,12 @@
-                                                            //VARIABLES
+/*-----------------------------------------------------------VARIABLES--------------------------------------------------------------------*/
 var eventos=[];//Arreglo Original de eventos
 
 
 var eventostabla=eventos; //Arreglo a evaluar, su funcinaldiad es representar la tabla actual que se esta mostrando al usuario
 
 var actualizar= document.getElementById("boton-actualizar");// Boton Actualizar
+
+var eventoA=null; //represantará siempre y en todo momento el objeto que hay que editar cuando el usuario quiere editar un evento, por el momento no conozco una forma en la que no declare una variable global.
 
 
 var numeroeventos=
@@ -22,15 +24,100 @@ var numeroeventos=
 
 const tabla = document.getElementById("informacion");//Nuestra tabla en html
 
+
+
+/*----------------------------------------------------------FIN VARIABLES---------------------------------------------------------------------*/
+
+
+
 /*-----------------------------------------------------------FUNCIONES--------------------------------------------------------------------*/
 
-function Eliminar(nombre)
+
+function validaciones(esedicion)
 {
-    if (nombre!=null)
-        {   
-            if(confirm(`Desea eliminar el evento ${nombre}?`))
+    document.getElementById('mensajeerror').textContent=""; 
+    console.log("entro en validacion");
+    const EventoNombre=document.getElementById('evento-nombre').value;
+    const EventoTipo=document.querySelector('input[name="evento-tipo"]:checked');
+    const EventoFecha=document.getElementById('evento-fecha').value;
+    const EventoDireccion=document.getElementById('evento-direccion').value;    
+    const EventoCapacidad=document.getElementById('evento-capacidad').value;    
+    const EventoValorizacion=document.getElementById('evento-puntuacion').value;    
+    let resultado=false;
+    //relleno de campos
+    
+    //validaciones , retornamos un cartel por cada campo que lo requiera
+    if (!EventoNombre)
+    {   
+            document.getElementById('evento-nombre').style.border='2px solid blue';
+            document.getElementById('mensajeerror').textContent="Nombre inválido";
+                      
+    }
+    else if (!EventoTipo)
+    {
+        document.getElementById('mensajeerror').textContent="Tipo inválido";
+        document.getElementById('radio').style.border='2px solid blue';
+        
+    }
+    else if (!EventoFecha)
+    {
+        document.getElementById('mensajeerror').textContent="Fecha Invalida";
+        document.getElementById('evento-fecha').style.border='2px solid blue';
+        
+    }
+    else if (!EventoDireccion)
+    {
+        document.getElementById('mensajeerror').textContent="Direccion Invalida";
+        document.getElementById('evento-direccion').style.border='2px solid blue';
+        
+    }
+    else if (!EventoCapacidad)
+    {
+        document.getElementById('mensajeerror').textContent="Capacidad Invalida";
+        document.getElementById('evento-capacidad').style.border='2px solid blue';
+        
+    }
+    else if (!EventoValorizacion)
+    {
+        document.getElementById('mensajeerror').textContent="Cotizacion inválida";
+        document.getElementById('evento-puntuacion').style.border='2px solid blue';
+        
+    }
+    else if (!esedicion)
+    {
+        if (eventos.some(evento=> evento.nombre.toLowerCase() === EventoNombre.toLowerCase()))
             {
-                eventos=eventos.filter(e=>e.nombre!=nombre);
+                document.getElementById('evento-nombre').style.border='2px solid blue';
+                document.getElementById('mensajeerror').textContent="Nombre ya existe";
+                        
+            }
+        else
+        {           
+                resultado=true;  
+                document.getElementById('mensajeerror').textContent="";          
+        }
+    }
+    else
+    {
+        resultado=true;  
+        document.getElementById('mensajeerror').textContent="";          
+    }
+
+    console.log("salio en validacion");
+    
+
+
+
+    return resultado;
+}
+
+function Eliminar(numero)
+{
+    if (numero!=null)
+        {   
+            if(confirm(`Desea eliminar el evento ${eventos.find(e=>e.numero===parseInt(numero)).nombre}`))
+            {
+                eventos=eventos.filter(e=>e.numero!=parseInt(numero));
                 actualizar.disabled=true;
                 document.getElementById('boton-enviar').disabled=false;
                 document.getElementById('datoseventos').reset();
@@ -45,9 +132,14 @@ function Eliminar(nombre)
 function Insertar(event)
 {
     event.preventDefault();//evita el recargo de la pagina al usar actualizar y enviar
+    document.getElementById('mensajeerror').textContent=""; 
 
 
-    //relleno de campos
+
+if (validaciones(false)) 
+    {
+    //objeto a crear
+    console.log("entro en insertar");
     const EventoNombre=document.getElementById('evento-nombre').value;
     const EventoTipo=document.querySelector('input[name="evento-tipo"]:checked');
     const EventoFecha=document.getElementById('evento-fecha').value;
@@ -57,79 +149,63 @@ function Insertar(event)
     const EventoCobro=document.getElementById('evento-cotizacion').checked;
     const EventoValorizacion=document.getElementById('evento-puntuacion').value;
     const EventoObservacion=document.getElementById('evento-observacion').value;
-    
-    //validaciones , retornamos un cartel por cada campo que lo requiera
-    if (!EventoNombre)
-    {   
-            alert("Nombre inválido");
-            return;
-    }
-    else if (!EventoTipo)
-    {
-        alert("Tipo Inválido");
-        return;
-    }
-    else if (!EventoFecha)
-    {
-        alert("Fecha inválida");
-        return;
-    }
-    else if (!EventoDireccion)
-    {
-        alert("Dirección inválida");
-        return;
-    }
-    else if (!EventoCapacidad)
-    {
-        alert("Capacidad inválida");
-        return;
-    }
-    else if (!EventoValorizacion)
-    {
-        alert("Cotizacion inválida");
-        return;
-    }
-    else if (eventos.some(evento=> evento.nombre.toLowerCase() === EventoNombre.toLowerCase()))
-    {
-            alert("Nombre ya existe");
-            return;
-    }
-
-    //objeto a crear
-    const evento =
-    {
-        numero:numeroeventos(),
-        nombre:EventoNombre,
-        tipo:EventoTipo.value,
-        fecha:EventoFecha,
-        direccion:EventoDireccion,
-        ciudad:EventoCiudad,
-        capacidad:EventoCapacidad,
-        cobro:EventoCobro,
-        valoriacion:EventoValorizacion,
-        observacion:EventoObservacion
-    }
+        const evento =
+        {
+            numero:numeroeventos(),
+            nombre:EventoNombre,
+            tipo:EventoTipo.value,
+            fecha:EventoFecha,
+            direccion:EventoDireccion,
+            ciudad:EventoCiudad,
+            capacidad:EventoCapacidad,
+            cobro:EventoCobro,
+            valoriacion:EventoValorizacion,
+            observacion:EventoObservacion
+        }
 
 
-    if (evento!=null)
-    {
-            eventos.push(evento);
-            console.log(
-            
-                `
-                Evento: ${evento.nombre}\n
-                Detelles:\n
-                Numero:${evento.numero}\n
-                Fecha:${evento.fecha}\n
-                Direccion:${evento.direccion}\n
-                Ciudad:${evento.ciudad}\n
-                Capacidad:${evento.capacidad}\n
-                Cobro:${evento.cobro}\n
-                Valorizacion:${evento.valoriacion}\n
-                Observaciones:${evento.observacion}\n
-                `
-            );
-    }  
+        if (evento!=null)
+        {
+                eventos.push(evento);
+                console.log(
+                
+                    `
+                    Evento: ${evento.nombre}\n
+                    Detelles:\n
+                    Numero:${evento.numero}\n
+                    Fecha:${evento.fecha}\n
+                    Direccion:${evento.direccion}\n
+                    Ciudad:${evento.ciudad}\n
+                    Capacidad:${evento.capacidad}\n
+                    Cobro:${evento.cobro}\n
+                    Valorizacion:${evento.valoriacion}\n
+                    Observaciones:${evento.observacion}\n
+                    `
+                );
+                alert(
+                
+                    `
+                    Evento: ${evento.nombre}\n
+                    Detelles:\n
+                    Numero:${evento.numero}\n
+                    Fecha:${evento.fecha}\n
+                    Direccion:${evento.direccion}\n
+                    Ciudad:${evento.ciudad}\n
+                    Capacidad:${evento.capacidad}\n
+                    Cobro:${evento.cobro}\n
+                    Valorizacion:${evento.valoriacion}\n
+                    Observaciones:${evento.observacion}\n
+                    `
+                );
+        }  
+        document.getElementById('evento-puntuacion').style.border='';
+        document.getElementById('evento-capacidad').style.border='';
+        document.getElementById('evento-direccion').style.border='';
+        document.getElementById('evento-fecha').style.border='';
+        document.getElementById('evento-fecha').style.border='';
+        document.getElementById('radio').style.border='';    
+        document.getElementById('evento-nombre').style.border='';
+    }    
     //limpiamos formulario
     document.getElementById('datoseventos').reset();
     //limpiamos la tabla
@@ -153,8 +229,8 @@ function ListarTabla(arregloEventos) {
                     <td>${ElementEvento.nombre}</td>
                     <td>${ElementEvento.fecha}</td>
                     <td>${ElementEvento.ciudad}</td>
-                    <td><img src="/Imagenes/Editar.png" alt="Editar" onclick="EditarEvento('${ElementEvento.nombre}')"></td>
-                    <td><img src="/Imagenes/Eliminar.png" alt="Eliminar" onclick="Eliminar('${ElementEvento.nombre}')" id="delete" "></td>
+                    <td><img src="/Imagenes/Editar.png" alt="Editar" onclick="EditarEvento('${ElementEvento.numero}')"></td>
+                    <td><img src="/Imagenes/Eliminar.png" alt="Eliminar" onclick="Eliminar('${ElementEvento.numero}')" id="delete" "></td>
                 `;        
                 tabla.appendChild(fila);
             });
@@ -167,13 +243,15 @@ function ListarTabla(arregloEventos) {
 }
 
 
-function EditarEvento(nombre)
+function EditarEvento(numero)
 {    
-    let objeto=eventos.find(e =>e.nombre===nombre);
+    eventoA=eventos.find(e =>e.numero===parseInt(numero)).numero;
+    let objeto=eventos.find(e =>e.numero===parseInt(numero));
     if (objeto!=null)
     {
         document.getElementById('boton-enviar').disabled = true;    
         document.getElementById('evento-nombre').value=objeto.nombre;
+        console.log(objeto.tipo);
         document.querySelector(`input[id="${objeto.tipo}"]`).checked=true;
         document.getElementById('evento-fecha').value=objeto.fecha;
         document.getElementById('evento-direccion').value=objeto.direccion;
@@ -183,8 +261,7 @@ function EditarEvento(nombre)
         document.getElementById('evento-puntuacion').value=objeto.valoriacion;
         document.getElementById('evento-observacion').value=objeto.observacion;   
         actualizar.disabled=false;
-        document.getElementById('boton-enviar').disabled=true;
-        eventos=eventos.filter(e=>e.nombre!=nombre);        
+        document.getElementById('boton-enviar').disabled=true;                
         document.getElementById('boton-cancelar').style.display='block';
         document.getElementById('delete').disabled=true;
     }
@@ -194,6 +271,7 @@ function EditarEvento(nombre)
     }
 
 }
+
 
 /*-----------------------------------------------------------FIN FUNCIONES--------------------------------------------------------------------*/
 
@@ -215,14 +293,40 @@ document.getElementById('boton-cancelar').addEventListener('click',function(even
 
 })
 
-actualizar.addEventListener('click',function(event)//Listener de ACTUALIZAR
+actualizar.addEventListener('click',function()//Listener de ACTUALIZAR
 {  
+    if (validaciones(true))
+    {
+        const EventoNombre=document.getElementById('evento-nombre').value;
+        const EventoTipo=document.querySelector('input[name="evento-tipo"]:checked');
+        const EventoFecha=document.getElementById('evento-fecha').value;
+        const EventoDireccion=document.getElementById('evento-direccion').value;
+        const EventoCiudad=document.getElementById('evento-ciudad').value;
+        const EventoCapacidad=document.getElementById('evento-capacidad').value;
+        const EventoCobro=document.getElementById('evento-cotizacion').checked;
+        const EventoValorizacion=document.getElementById('evento-puntuacion').value;
+        const EventoObservacion=document.getElementById('evento-observacion').value;        
+        eventos.find(e=>e.numero==eventoA).nombre=EventoNombre;
+        eventos.find(e=>e.numero==eventoA).tipo=EventoTipo;
+        eventos.find(e=>e.numero==eventoA).fecha=EventoFecha;
+        eventos.find(e=>e.numero==eventoA).ciudad=EventoCiudad;
+        eventos.find(e=>e.numero==eventoA).capacidad=EventoCapacidad;
+        eventos.find(e=>e.numero==eventoA).cobro=EventoCobro;
+        eventos.find(e=>e.numero==eventoA).valoriacion=EventoValorizacion;
+        eventos.find(e=>e.numero==eventoA).observacion=EventoObservacion;        
+    }
+    alert(eventos.find(e=>e.numero==eventoA).nombre);
     
-    Insertar(event);// importante el parametro EVENT para el listener como para insertar, evitara que se reinicie la pagina y perdamos los datos
+   // Insertar(event);// importante el parametro EVENT para el listener como para insertar, evitara que se reinicie la pagina y perdamos los datos  
+       //limpiamos la tabla
+       tabla.innerHTML="";
+       //actualizamos
+       ListarTabla(eventos);  
     actualizar.disabled=true;
     document.getElementById('boton-enviar').disabled = false;    
-    document.getElementById('boton-cancelar').querySelector('.boton-cancelar').style.display='none';
-    document.getElementById('datoseventos').reset();    
+    document.getElementById('boton-cancelar').style.display='none';
+    document.getElementById('datoseventos').reset(); 
+    eventoA=null;   
 })                                    
 
 //BOTON CARGAR DATO
@@ -241,7 +345,7 @@ document.getElementById('boton-enviar').addEventListener('click',Insertar);// ll
             
             valor.addEventListener('input',function()
             {
-                variacionp.textContent=valorp.value;
+                variacionp.textContent=valor.value;
             }
             );
 //fin barra responsive
