@@ -24,12 +24,6 @@ var numeroeventos=
 
 const tabla = document.getElementById("informacion");//Nuestra tabla en html
 
-
-
-/*----------------------------------------------------------FIN VARIABLES---------------------------------------------------------------------*/
-
-
-
 /*-----------------------------------------------------------FUNCIONES--------------------------------------------------------------------*/
 
 
@@ -164,48 +158,25 @@ if (validaciones(false))
         }
 
 
-        if (evento!=null)
-        {
-                eventos.push(evento);
-                console.log(
-                
-                    `
-                    Evento: ${evento.nombre}\n
-                    Detelles:\n
-                    Numero:${evento.numero}\n
-                    Fecha:${evento.fecha}\n
-                    Direccion:${evento.direccion}\n
-                    Ciudad:${evento.ciudad}\n
-                    Capacidad:${evento.capacidad}\n
-                    Cobro:${evento.cobro}\n
-                    Valorizacion:${evento.valoriacion}\n
-                    Observaciones:${evento.observacion}\n
-                    `
-                );
-                alert(
-                
-                    `
-                    Evento: ${evento.nombre}\n
-                    Detelles:\n
-                    Numero:${evento.numero}\n
-                    Fecha:${evento.fecha}\n
-                    Direccion:${evento.direccion}\n
-                    Ciudad:${evento.ciudad}\n
-                    Capacidad:${evento.capacidad}\n
-                    Cobro:${evento.cobro}\n
-                    Valorizacion:${evento.valoriacion}\n
-                    Observaciones:${evento.observacion}\n
-                    `
-                );
-        }  
-        document.getElementById('evento-puntuacion').style.border='';
-        document.getElementById('evento-capacidad').style.border='';
-        document.getElementById('evento-direccion').style.border='';
-        document.getElementById('evento-fecha').style.border='';
-        document.getElementById('evento-fecha').style.border='';
-        document.getElementById('radio').style.border='';    
-        document.getElementById('evento-nombre').style.border='';
-    }    
+    if (evento!=null)
+    {
+            eventos.push(evento);
+            console.log(
+            
+                `
+                Evento: ${evento.nombre}\n
+                Detelles:\n
+                Numero:${evento.numero}\n
+                Fecha:${evento.fecha}\n
+                Direccion:${evento.direccion}\n
+                Ciudad:${evento.ciudad}\n
+                Capacidad:${evento.capacidad}\n
+                Cobro:${evento.cobro}\n
+                Valorizacion:${evento.valoriacion}\n
+                Observaciones:${evento.observacion}\n
+                `
+            );
+    }  
     //limpiamos formulario
     document.getElementById('datoseventos').reset();
     //limpiamos la tabla
@@ -251,7 +222,6 @@ function EditarEvento(numero)
     {
         document.getElementById('boton-enviar').disabled = true;    
         document.getElementById('evento-nombre').value=objeto.nombre;
-        console.log(objeto.tipo);
         document.querySelector(`input[id="${objeto.tipo}"]`).checked=true;
         document.getElementById('evento-fecha').value=objeto.fecha;
         document.getElementById('evento-direccion').value=objeto.direccion;
@@ -523,7 +493,7 @@ document.getElementById('mostrar').addEventListener('click', function()
             alert(muestras);
         }
     );
-
+}
 
     // FIN BOTON BUSCAR EVENTO CON FILTRO EXACTO            
 
